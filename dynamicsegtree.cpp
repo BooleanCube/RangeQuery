@@ -1,47 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> nums;
-
-void constructTree(int  a) {
+void constructTree(int nums[], int  a) {
 	for(int i=a; i<=2*a; i++) {
 		int b = i;
 		while(b>1) {
 			b>>=1;
 			nums[b] += nums[i];
+			cout << b << " " << nums[b] << endl;
 		}
 	}
 }
 
-void updateTree(int k, int w) {
-	int a = nums.size()/2;
+void updateTree(int nums[], int k, int w) {
+	int a = sizeof(nums)/sizeof(nums[0])/2;
 	int b = a+k-1;
+	int v = nums[b];
 	nums[b] = w;
 	while(b>1) {
-		b = b>>1;
-		nums[b] -= nums[b];
+		b>>=1;
+		nums[b] -= v;
 		nums[b] += w;
 	}
 }
 
-int getSumRange(int k, int w, int sum) {
-	if(k == w) return sum;
-	if(k%2 == 1) { sum += k; k++; }
-	if(w%2 == 0) { sum += w; w--; }
-	else getSumRange(k>>1, w>>1, sum);
+int getSumRange(int nums[], int k, int w, int sum) {
+	if(k == w) return nums[k] + sum;
+	if(k%2 == 1) { sum += nums[k]; k++; }
+	if(w%2 == 0) { sum += nums[w]; w--; }
+	return getSumRange(nums, k>>1, w>>1, sum);
 }
 
 int main() {
-	cout << "yes";
 	int a, b; cin >> a >> b;
+	int nums[2*a+1];
 	for(int i=0; i<a; i++) cin >> nums[a+i];
-	constructTree(a);
+	cout << endl;
+	constructTree(nums, a);
 	cout << "yes";
 	for(int i=0; i<b; i++) {
 		int q, k, w; cin >> q >> k >> w;
 		cout << "yes";
-		if(q == 1) updateTree(k, w);
-		else cout << getSumRange(k, w, 0) << endl;
+		if(q == 1) updateTree(nums, k, w);
+		else cout << getSumRange(nums, k, w, 0) << endl;
 	}
-	cout << "\n";
 }
