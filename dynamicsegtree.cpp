@@ -1,3 +1,5 @@
+//you can just use long long, i was playing around with stdint.h
+
 #include <iostream>
 #include <vector>
 #include <stdint.h>
