@@ -1,10 +1,12 @@
 //you can just use long long, i was playing around with stdint.h
+//segment tree
 
 #include <iostream>
 #include <vector>
 #include <stdint.h>
 using namespace std;
 
+//O(nlogn)
 void constructTree(vector<uint64_t>* nums, uint64_t a) {
 	for(uint64_t i=a; i<=2*a; i++) {
 		uint64_t b = i;
@@ -15,6 +17,7 @@ void constructTree(vector<uint64_t>* nums, uint64_t a) {
 	}
 }
 
+//O(logn)
 void updateNode(vector<uint64_t>* nums, uint64_t k, uint64_t w) {
 	uint64_t v = nums->at(k);
   uint64_t b = k;
@@ -26,6 +29,7 @@ void updateNode(vector<uint64_t>* nums, uint64_t k, uint64_t w) {
 	}
 }
 
+//O(logn)
 uint64_t getSumRange(vector<uint64_t>* nums, uint64_t k, uint64_t w, uint64_t sum) {
   if(k == w) return nums->at(k) + sum;
   if(k%2 == 1) { sum += nums->at(k); k++; }
