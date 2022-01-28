@@ -20,7 +20,7 @@ void constructTree(vector<uint64_t>* nums, uint64_t a) {
 //O(logn)
 void updateNode(vector<uint64_t>* nums, uint64_t k, uint64_t w) {
 	uint64_t v = nums->at(k);
-  uint64_t b = k;
+  	uint64_t b = k;
 	nums->at(k) = w;
 	while(b>1) {
 		b>>=1;
@@ -31,11 +31,11 @@ void updateNode(vector<uint64_t>* nums, uint64_t k, uint64_t w) {
 
 //O(logn)
 uint64_t getSumRange(vector<uint64_t>* nums, uint64_t k, uint64_t w, uint64_t sum) {
-  if(k == w) return nums->at(k) + sum;
-  if(k%2 == 1) { sum += nums->at(k); k++; }
-  if(k == w) return nums->at(k) + sum;
-  if(w%2 == 0) { sum += nums->at(w); w--; }
-  return getSumRange(nums, k>>1, w>>1, sum);
+	if(k == w) return nums->at(k) + sum;
+	if(k%2 == 1) { sum += nums->at(k); k++; }
+	if(k == w) return nums->at(k) + sum;
+	if(w%2 == 0) { sum += nums->at(w); w--; }
+ 	return getSumRange(nums, k>>1, w>>1, sum);
 }
 
 int main() {
