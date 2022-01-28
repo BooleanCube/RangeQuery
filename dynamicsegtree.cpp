@@ -7,6 +7,7 @@
 using namespace std;
 
 //O(nlogn)
+//this basically just does updateNode() n times so this method was entirely unecessary
 void constructTree(vector<uint64_t>* nums, uint64_t a) {
 	for(uint64_t i=a; i<=2*a; i++) {
 		uint64_t b = i;
